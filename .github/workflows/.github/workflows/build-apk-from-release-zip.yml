@@ -2,6 +2,8 @@ name: Build APK From Release ZIP
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -37,7 +39,7 @@ jobs:
       - name: Unzip Android project
         run: |
           unzip -q Krishna_Jewelers_FIXED_FULL_APP.zip -d project
-          find project -maxdepth 3 -name "build.gradle" -o -name "settings.gradle"
+          find project -maxdepth 4 -type f | head -50
 
       - name: Build APK
         run: |
